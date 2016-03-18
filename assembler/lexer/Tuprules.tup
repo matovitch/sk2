@@ -11,6 +11,4 @@ endif
 
 export QUEX_PATH
 
-CFLAGS += -I ../../deps -I ../..
-
 !quex = |> quex -i %f -o %B $(QXFLAGS) |> %B.cpp %B.hpp %B-configuration.hpp %B-token.hpp %B-token_ids.hpp

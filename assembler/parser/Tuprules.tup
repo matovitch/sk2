@@ -1,4 +1,3 @@
-CFLAGS += -I ../../deps -I ../..
 CFLAGS += -Wno-unused-variable
 
 !rename = |> cp %f %o |> %B.cpp

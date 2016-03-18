@@ -1,3 +1,4 @@
+ROOT = $(TUP_CWD)
 CC = clang++
 
 CFLAGS += -Wall
@@ -9,5 +10,7 @@ CFLAGS += -g
 else
 CFLAGS += -O3
 endif
+
+CFLAGS += -I $(ROOT) -I $(ROOT)/deps
 
 !cc = |> $(CC) $(CFLAGS) -c %f -o %o |> %B.o
