@@ -3,4 +3,4 @@
 	url = https://github.com/docopt/docopt.cpp
 [submodule "deps/quex"]
 	path = deps/quex
-	url = /home/cbrugel/workspace/C++/quex/
+	url = https://github.com/matovitch/quex
