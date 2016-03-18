@@ -1,0 +1,6 @@
+[submodule "deps/docopt.cpp"]
+	path = deps/docopt.cpp
+	url = https://github.com/docopt/docopt.cpp
+[submodule "deps/quex"]
+	path = deps/quex
+	url = /home/cbrugel/workspace/C++/quex/

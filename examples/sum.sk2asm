@@ -1,0 +1,13 @@
+;;;;;;;;;;;;;;;;;;;;;
+; My little program ;
+;;;;;;;;;;;;;;;;;;;;;
+
+
+@main
+    opsh 0      ; int sum = 0;
+    opsh 1      ; int i = 1;
+    @loop
+        bilt 10     ; i < 10;
+        iadd %1     ; sum += i;
+        iadd 1      ; i++;
+    jump @loop

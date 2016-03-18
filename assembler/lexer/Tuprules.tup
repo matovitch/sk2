@@ -1,0 +1,16 @@
+TOKEN_PREFIX = "ASM_TOKEN_"
+TOKEN_FILE = ../parser/assembler_parser.h
+
+QXFLAGS += --token-id-prefix $(TOKEN_PREFIX)
+QXFLAGS += --file-extension-scheme pp
+QXFLAGS += --foreign-token-id-file $(TOKEN_FILE)
+
+ifeq (@(TUP_DEBUG),y)
+QXFLAGS += -DQUEX_OPTION_ASSERTS_DISABLED
+endif
+
+export QUEX_PATH
+
+CFLAGS += -I ../../deps -I ../..
+
+!quex = |> quex -i %f -o %B $(QXFLAGS) |> %B.cpp %B.hpp %B-configuration.hpp %B-token.hpp %B-token_ids.hpp

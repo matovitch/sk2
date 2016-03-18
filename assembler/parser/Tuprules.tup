@@ -1,0 +1,5 @@
+CFLAGS += -I ../../deps -I ../..
+CFLAGS += -Wno-unused-variable
+
+!rename = |> cp %f %o |> %B.cpp
+!lemon = |> lemon %f |> %B.c %B.h %B.out

@@ -1,0 +1,73 @@
+mode ASSEMBLER
+{
+    [\t\r\n ]+                  {}
+    ;.*                         {}
+    "."                         => ASM_TOKEN_DOT;
+    "$"                         => ASM_TOKEN_DOLLAR;
+    "%"                         => ASM_TOKEN_PERCENT;
+    [eE]                        => ASM_TOKEN_EXPONENT;
+    [+\-]                       => ASM_TOKEN_SIGN(Lexeme);
+    @[_a-zA-Z][_a-zA-Z0-9]*     => ASM_TOKEN_LABEL(Lexeme);
+    [0-9]+                      => ASM_TOKEN_NUMBER(Lexeme);
+
+    "iadd"                      => ASM_TOKEN_IADD;
+    "isub"                      => ASM_TOKEN_ISUB;
+    "imul"                      => ASM_TOKEN_IMUL;
+    "idiv"                      => ASM_TOKEN_IDIV;
+    "imod"                      => ASM_TOKEN_IMOD;
+    "ineg"                      => ASM_TOKEN_INEG;
+
+    "inot"                      => ASM_TOKEN_INOT;
+    "iand"                      => ASM_TOKEN_IAND;
+    "ixor"                      => ASM_TOKEN_IXOR;
+    "ior"                       => ASM_TOKEN_IOR;
+
+    "ilsh"                      => ASM_TOKEN_IRSH;
+    "irsh"                      => ASM_TOKEN_ILSH;
+
+
+    "fadd"                      => ASM_TOKEN_FADD;
+    "fsub"                      => ASM_TOKEN_FSUB;
+    "fmul"                      => ASM_TOKEN_FMUL;
+    "fdiv"                      => ASM_TOKEN_FDIV;
+    "fneg"                      => ASM_TOKEN_FNEG;
+
+    "fisn"                      => ASM_TOKEN_FISN;
+    "fasn"                      => ASM_TOKEN_FASN;
+    "fexp"                      => ASM_TOKEN_FEXP;
+    "flog"                      => ASM_TOKEN_FLOG;
+
+    "jump"                      => ASM_TOKEN_JUMP;
+
+    "beql"                      => ASM_TOKEN_BEQL;
+    "bilt"                      => ASM_TOKEN_BILT;
+    "bigt"                      => ASM_TOKEN_BIGT;
+    "bile"                      => ASM_TOKEN_BILE;
+    "bige"                      => ASM_TOKEN_BIGE;
+    "bflt"                      => ASM_TOKEN_BFLT;
+    "bfgt"                      => ASM_TOKEN_BFGT;
+    "band"                      => ASM_TOKEN_BAND;
+    "bnot"                      => ASM_TOKEN_BNOT;
+    "bxor"                      => ASM_TOKEN_BXOR;
+    "bor"                       => ASM_TOKEN_BOR;
+
+    "bpop"                      => ASM_TOKEN_BPOP;
+    "bpsh"                      => ASM_TOKEN_BPSH;
+
+    "opop"                      => ASM_TOKEN_OPOP;
+    "opsh"                      => ASM_TOKEN_OPSH;
+
+    "cgsk"                      => ASM_TOKEN_CGSK;
+    "cpsk"                      => ASM_TOKEN_CPSK;
+    
+    "call"                      => ASM_TOKEN_CALL;    
+    "ret"                       => ASM_TOKEN_RET;
+
+    "write"                     => ASM_TOKEN_WRITE;
+    "read"                      => ASM_TOKEN_READ;
+
+    "csys"                      => ASM_TOKEN_CSYS;
+    
+    <<EOF>>                     => ASM_TOKEN_END_OF_FILE;
+    <<FAIL>>                    => ASM_TOKEN_FAILURE;
+}

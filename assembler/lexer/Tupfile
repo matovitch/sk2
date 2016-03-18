@@ -1,0 +1,4 @@
+include_rules
+
+: *.qx | ../<token> |> !quex |>
+: *.cpp | *.hpp |> !cc |> %B.o ../<lexer>

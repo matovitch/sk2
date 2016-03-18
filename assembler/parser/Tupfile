@@ -1,0 +1,5 @@
+include_rules
+
+: *.y |> !lemon |> %B.c %B.h %B.out ../<token>
+: *.c |> !rename |>
+: *.cpp | ../<lexer> |> !cc |> %B.o ../<parser>
