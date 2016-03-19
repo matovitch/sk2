@@ -1,1 +1,4 @@
 CFLAGS += -Wno-unused-variable
+CFLAGS += -Wno-unknown-pragmas
+CFLAGS += -Wno-strict-aliasing
+CFLAGS += -DQUEX_OPTION_ASSERTS_WARNING_MESSAGE_DISABLED

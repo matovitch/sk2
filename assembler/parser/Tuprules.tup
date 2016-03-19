@@ -1,4 +1,5 @@
 CFLAGS += -Wno-unused-variable
+CFLAGS += -Wno-strict-aliasing
 
 !rename = |> cp %f %o |> %B.cpp
 !lemon = |> lemon %f |> %B.c %B.h %B.out

@@ -13,10 +13,10 @@ R"(SK2 Assembler.
         sk2asm [-hv -o <output> -t <traces>] <input>
 
     Options:
-        -o, --output   Name of the output file.
-        -t, --traces   Lemon parsing traces.
-        -h, --help     Show this screen.
-        -v, --version  Show version number.
+        -o, --output <output>   Name of the output file.
+        -t, --traces <traces>   Lemon parsing traces.
+        -h, --help              Show this screen.
+        -v, --version           Show version number.
 )";
 
 int main(int argc, const char** argv)
