@@ -8,7 +8,7 @@
 #include "byte_code.hpp"
 
 
-nemaspace mvm
+namespace mvm
 {
 
 template <std::size_t N>
@@ -24,7 +24,7 @@ template <std::size_t N>
 struct StackBlock : public Stack
 {
     StackBlock(uint32_t* previous, uint32_t element) : 
-        _previous(NULL),
+        _previous(previous),
     {
         data[0] = element;
     }

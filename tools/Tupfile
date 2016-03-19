@@ -1,4 +1,4 @@
 include_rules
 
 : foreach *.cpp ../deps/docopt.cpp/docopt.cpp | ../assembler/<parser> |> !cc |> %B.o
-: *.o ../assembler/lexer/assembler_lexer.o | ../assembler/<lexer> |> $(CC) %f -o %o |> sk2asm ../<tools>
+: *.o ../assembler/lexer/assembler_lexer.o|> $(CC) %f -o %o |> sk2asm ../<tools>
