@@ -122,8 +122,11 @@ static mvm::Instruction* instructionFromMnemonic(mvm::Mnemonic* mnemonic, T arg,
 template <>
 mvm::Instruction* instructionFromMnemonic(mvm::Mnemonic* mnemonic, std::string* arg, uint32_t note)
 {
-    std::shared_ptr<std::string> ptr(arg);
-    return instructionFromMnemonic(mnemonic, *arg, note);
+    mvm::Instruction* instruction = instructionFromMnemonic(mnemonic, *arg, note);
+
+    delete arg;
+
+    return instruction;
 }
 
 
