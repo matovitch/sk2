@@ -3,18 +3,17 @@
 
 //STL
 #include <unordered_map>
-#include <vector>
 #include <cstddef>
 #include <fstream>
+#include <vector>
 #include <ios>
 
 //MVM
 #include "lexer/assembler_lexer.hpp"
 #include "utils/instruction.hpp"
 
-#include <iostream>
 
-namespace mvm
+namespace sk2
 {
 
 class AssemblerProgram
@@ -85,8 +84,7 @@ private:
 };
 
 
-} // end mvm namespace
-
+} // end sk2 namespace
 
 
 #endif // end __ASSEMBLER_PROGRAM_H__

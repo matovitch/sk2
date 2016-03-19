@@ -26,15 +26,15 @@ int main(int argc, const char** argv)
                                                                true,
                                                                "SK2 Assembler 0.1");
 
-    mvm::AssemblerParser assemblerParser;
+    sk2::AssemblerParser assemblerParser;
 
-    std::shared_ptr<mvm::AssemblerProgram> program = 
+    std::shared_ptr<sk2::AssemblerProgram> program = 
         assemblerParser.parse(args["<input>"].asString(),
                               args["<traces>"] ? args["<traces>"].asString() : "");
 
     if (program->hasLexerError() || program->hasParserError())
     {
-        mvm::AssemblerLexer::token_type* lastValidToken = program->getLastValidToken();
+        sk2::AssemblerLexer::token_type* lastValidToken = program->getLastValidToken();
 
         if (lastValidToken != NULL)
         {

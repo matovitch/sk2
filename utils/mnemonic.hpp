@@ -5,7 +5,7 @@
 #include <unordered_map>
 #include <cstddef>
 
-namespace mvm
+namespace sk2
 {
 
 static const uint32_t MNEMONIC_MASK = 0xff;
@@ -78,7 +78,9 @@ struct Mnemonic
 
         // About memory
         WRITE,
-        READ
+        READ,
+
+        HALT
     };
 
     static const uint32_t NOTE_SHIFT = 0x10;
@@ -164,6 +166,6 @@ struct Mnemonic
 
 };
 
-} // end mvm namespace
+} // end sk2 namespace
 
 #endif // end __MNEMONIC_H__

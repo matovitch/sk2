@@ -12,7 +12,7 @@
 
 %name assembler_parser
 
-%extra_argument { mvm::AssemblerProgram* state }
+%extra_argument { sk2::AssemblerProgram* state }
 
 %token_prefix ASM_TOKEN_
 
@@ -33,20 +33,20 @@
 
 %type float             { float }
 
-%type mnemonic_L        { mvm::Mnemonic* }
-%type mnemonic_I        { mvm::Mnemonic* }
-%type mnemonic_VIOU     { mvm::Mnemonic* }
-%type mnemonic_VFOU     { mvm::Mnemonic* }
-%type mnemonic_IFOU     { mvm::Mnemonic* }
-%type mnemonic_VIFOU    { mvm::Mnemonic* }
+%type mnemonic_L        { sk2::Mnemonic* }
+%type mnemonic_I        { sk2::Mnemonic* }
+%type mnemonic_VIOU     { sk2::Mnemonic* }
+%type mnemonic_VFOU     { sk2::Mnemonic* }
+%type mnemonic_IFOU     { sk2::Mnemonic* }
+%type mnemonic_VIFOU    { sk2::Mnemonic* }
 
-%type instruction       { mvm::Instruction* }
-%type instruction_L     { mvm::Instruction* }
-%type instruction_I     { mvm::Instruction* }
-%type instruction_VIOU  { mvm::Instruction* }
-%type instruction_VFOU  { mvm::Instruction* }
-%type instruction_IFOU  { mvm::Instruction* }
-%type instruction_VIFOU { mvm::Instruction* }
+%type instruction       { sk2::Instruction* }
+%type instruction_L     { sk2::Instruction* }
+%type instruction_I     { sk2::Instruction* }
+%type instruction_VIOU  { sk2::Instruction* }
+%type instruction_VFOU  { sk2::Instruction* }
+%type instruction_IFOU  { sk2::Instruction* }
+%type instruction_VIFOU { sk2::Instruction* }
 
 axiom ::= program.
 
@@ -89,6 +89,7 @@ mnemonic_I(m) ::= CGSK (a). { m = mnemonicFromToken(a); }
 mnemonic_I(m) ::= CPSK (a). { m = mnemonicFromToken(a); }
 mnemonic_I(m) ::= BPOP (a). { m = mnemonicFromToken(a); }
 mnemonic_I(m) ::= OPOP (a). { m = mnemonicFromToken(a); }
+mnemonic_I(m) ::= HALT (a). { m = mnemonicFromToken(a); }
 mnemonic_I(m) ::= RET  (a). { m = mnemonicFromToken(a); }
 
 mnemonic_VIOU(m) ::= IADD(a). { m = mnemonicFromToken(a); }
@@ -131,30 +132,30 @@ mnemonic_IFOU(m) ::= OPSH(a). { m = mnemonicFromToken(a); }
 mnemonic_VIFOU(m) ::= BEQL(a). { m = mnemonicFromToken(a); }
 mnemonic_VIFOU(m) ::= BXOR(a). { m = mnemonicFromToken(a); }
 
-instruction_L(i) ::= mnemonic_L(a) label(b).   { i = instructionFromMnemonic(a, b, mvm::Instruction::Note::IS_L); }
+instruction_L(i) ::= mnemonic_L(a) label(b).   { i = instructionFromMnemonic(a, b, sk2::Instruction::Note::IS_L); }
 
-instruction_I(i) ::= mnemonic_I(a) integer(b). { i = instructionFromMnemonic(a, b, mvm::Instruction::Note::IS_I); }
+instruction_I(i) ::= mnemonic_I(a) integer(b). { i = instructionFromMnemonic(a, b, sk2::Instruction::Note::IS_I); }
 
-instruction_VIOU(i) ::= mnemonic_VIOU(a)              . { i = instructionFromMnemonic(a, 0, mvm::Instruction::Note::IS_V); }
-instruction_VIOU(i) ::= mnemonic_VIOU(a) integer   (b). { i = instructionFromMnemonic(a, b, mvm::Instruction::Note::IS_I); }
-instruction_VIOU(i) ::= mnemonic_VIOU(a) register_o(b). { i = instructionFromMnemonic(a, b, mvm::Instruction::Note::IS_O); }
-instruction_VIOU(i) ::= mnemonic_VIOU(a) register_u(b). { i = instructionFromMnemonic(a, b, mvm::Instruction::Note::IS_U); }
+instruction_VIOU(i) ::= mnemonic_VIOU(a)              . { i = instructionFromMnemonic(a, 0, sk2::Instruction::Note::IS_V); }
+instruction_VIOU(i) ::= mnemonic_VIOU(a) integer   (b). { i = instructionFromMnemonic(a, b, sk2::Instruction::Note::IS_I); }
+instruction_VIOU(i) ::= mnemonic_VIOU(a) register_o(b). { i = instructionFromMnemonic(a, b, sk2::Instruction::Note::IS_O); }
+instruction_VIOU(i) ::= mnemonic_VIOU(a) register_u(b). { i = instructionFromMnemonic(a, b, sk2::Instruction::Note::IS_U); }
 
-instruction_VFOU(i) ::= mnemonic_VFOU(a)              . { i = instructionFromMnemonic(a, 0, mvm::Instruction::Note::IS_V); }
-instruction_VFOU(i) ::= mnemonic_VFOU(a) float     (b). { i = instructionFromMnemonic(a, b, mvm::Instruction::Note::IS_F); }
-instruction_VFOU(i) ::= mnemonic_VFOU(a) register_o(b). { i = instructionFromMnemonic(a, b, mvm::Instruction::Note::IS_O); }
-instruction_VFOU(i) ::= mnemonic_VFOU(a) register_u(b). { i = instructionFromMnemonic(a, b, mvm::Instruction::Note::IS_U); }
+instruction_VFOU(i) ::= mnemonic_VFOU(a)              . { i = instructionFromMnemonic(a, 0, sk2::Instruction::Note::IS_V); }
+instruction_VFOU(i) ::= mnemonic_VFOU(a) float     (b). { i = instructionFromMnemonic(a, b, sk2::Instruction::Note::IS_F); }
+instruction_VFOU(i) ::= mnemonic_VFOU(a) register_o(b). { i = instructionFromMnemonic(a, b, sk2::Instruction::Note::IS_O); }
+instruction_VFOU(i) ::= mnemonic_VFOU(a) register_u(b). { i = instructionFromMnemonic(a, b, sk2::Instruction::Note::IS_U); }
 
-instruction_IFOU(i) ::= mnemonic_IFOU(a) integer   (b). { i = instructionFromMnemonic(a, b, mvm::Instruction::Note::IS_I); }
-instruction_IFOU(i) ::= mnemonic_IFOU(a) float     (b). { i = instructionFromMnemonic(a, b, mvm::Instruction::Note::IS_F); }
-instruction_IFOU(i) ::= mnemonic_IFOU(a) register_o(b). { i = instructionFromMnemonic(a, b, mvm::Instruction::Note::IS_O); }
-instruction_IFOU(i) ::= mnemonic_IFOU(a) register_u(b). { i = instructionFromMnemonic(a, b, mvm::Instruction::Note::IS_U); }
+instruction_IFOU(i) ::= mnemonic_IFOU(a) integer   (b). { i = instructionFromMnemonic(a, b, sk2::Instruction::Note::IS_I); }
+instruction_IFOU(i) ::= mnemonic_IFOU(a) float     (b). { i = instructionFromMnemonic(a, b, sk2::Instruction::Note::IS_F); }
+instruction_IFOU(i) ::= mnemonic_IFOU(a) register_o(b). { i = instructionFromMnemonic(a, b, sk2::Instruction::Note::IS_O); }
+instruction_IFOU(i) ::= mnemonic_IFOU(a) register_u(b). { i = instructionFromMnemonic(a, b, sk2::Instruction::Note::IS_U); }
 
-instruction_VIFOU(i) ::= mnemonic_VIFOU(a)              . { i = instructionFromMnemonic(a, 0, mvm::Instruction::Note::IS_V); }
-instruction_VIFOU(i) ::= mnemonic_VIFOU(a) integer   (b). { i = instructionFromMnemonic(a, b, mvm::Instruction::Note::IS_I); }
-instruction_VIFOU(i) ::= mnemonic_VIFOU(a) float     (b). { i = instructionFromMnemonic(a, b, mvm::Instruction::Note::IS_F); }
-instruction_VIFOU(i) ::= mnemonic_VIFOU(a) register_o(b). { i = instructionFromMnemonic(a, b, mvm::Instruction::Note::IS_O); }
-instruction_VIFOU(i) ::= mnemonic_VIFOU(a) register_u(b). { i = instructionFromMnemonic(a, b, mvm::Instruction::Note::IS_U); }
+instruction_VIFOU(i) ::= mnemonic_VIFOU(a)              . { i = instructionFromMnemonic(a, 0, sk2::Instruction::Note::IS_V); }
+instruction_VIFOU(i) ::= mnemonic_VIFOU(a) integer   (b). { i = instructionFromMnemonic(a, b, sk2::Instruction::Note::IS_I); }
+instruction_VIFOU(i) ::= mnemonic_VIFOU(a) float     (b). { i = instructionFromMnemonic(a, b, sk2::Instruction::Note::IS_F); }
+instruction_VIFOU(i) ::= mnemonic_VIFOU(a) register_o(b). { i = instructionFromMnemonic(a, b, sk2::Instruction::Note::IS_O); }
+instruction_VIFOU(i) ::= mnemonic_VIFOU(a) register_u(b). { i = instructionFromMnemonic(a, b, sk2::Instruction::Note::IS_U); }
 
 instruction(i) ::=  instruction_I    (a). { i = a; }
 instruction(i) ::=  instruction_L    (a). { i = a; }

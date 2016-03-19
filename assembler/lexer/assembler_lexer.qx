@@ -67,6 +67,7 @@ mode ASSEMBLER
     "read"                      => ASM_TOKEN_READ;
 
     "csys"                      => ASM_TOKEN_CSYS;
+    "halt"                      => ASM_TOKEN_HALT;
     
     <<EOF>>                     => ASM_TOKEN_END_OF_FILE;
     <<FAIL>>                    => ASM_TOKEN_FAILURE;

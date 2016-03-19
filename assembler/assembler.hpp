@@ -9,7 +9,7 @@
 
 #include "assembler_program.hpp"
 
-namespace mvm
+namespace sk2
 {
 
 typedef Lexer<quex::assembler_lexer,
@@ -24,6 +24,6 @@ typedef Parser<AssemblerLexer,
                assembler_parser,
                assembler_parserTrace> AssemblerParser;
 
-} //end mvm namespace
+} //end sk2 namespace
 
 #endif // end __ASSEMBLER_H__

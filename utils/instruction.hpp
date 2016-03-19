@@ -9,7 +9,7 @@
 //MVM
 #include "mnemonic.hpp"
 
-namespace mvm
+namespace sk2
 {
 
 struct Instruction
@@ -55,7 +55,7 @@ struct Instruction
     std::string _label;
 };
 
-} // end mvm namespace
+} // end sk2 namespace
 
 
 #endif // end __INSTRUCTION_H__
